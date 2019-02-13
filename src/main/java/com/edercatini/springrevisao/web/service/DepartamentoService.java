@@ -6,13 +6,13 @@ import com.edercatini.springrevisao.web.domain.Departamento;
 
 public interface DepartamentoService {
 
-	void save(Departamento departamento);
+	void salvar(Departamento departamento);
 
-	void edit(Departamento departamento);
+	void editar(Departamento departamento);
 
-	void delete(Long id);
+	void deletar(Long id);
 
-	Departamento findById(Long id);
+	Departamento encontrarPorId(Long id);
 
-	List<Departamento> findAll();
+	List<Departamento> encontrarTodos();
 }

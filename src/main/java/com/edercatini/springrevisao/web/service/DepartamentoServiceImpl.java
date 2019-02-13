@@ -21,29 +21,29 @@ public class DepartamentoServiceImpl implements DepartamentoService {
 	}
 
 	@Override
-	public void save(Departamento departamento) {
+	public void salvar(Departamento departamento) {
 		this.dao.save(departamento);
 	}
 
 	@Override
-	public void edit(Departamento departamento) {
+	public void editar(Departamento departamento) {
 		this.dao.update(departamento);
 	}
 
 	@Override
-	public void delete(Long id) {
+	public void deletar(Long id) {
 		this.dao.delete(id);
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public Departamento findById(Long id) {
+	public Departamento encontrarPorId(Long id) {
 		return this.dao.findById(id);
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Departamento> findAll() {
+	public List<Departamento> encontrarTodos() {
 		return this.dao.findAll();
 	}
 }
