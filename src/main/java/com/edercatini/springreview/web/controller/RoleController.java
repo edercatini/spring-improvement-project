@@ -1,20 +1,20 @@
-package com.edercatini.springrevisao.web.controller;
+package com.edercatini.springreview.web.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/funcionarios")
-public class FuncionarioController {
+@RequestMapping("/cargos")
+public class RoleController {
 
 	@GetMapping("/cadastrar")
-	public String cadastrar() {
-		return "/funcionario/cadastro";
+	public String index() {
+		return "/cargo/cadastro";
 	}
 
 	@GetMapping("/listar")
-	public String listar() {
-		return "/funcionario/lista";
+	public String list() {
+		return "/cargo/lista";
 	}
 }

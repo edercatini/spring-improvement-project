@@ -1,4 +1,4 @@
-package com.edercatini.springrevisao.web.dao;
+package com.edercatini.springreview.web.dao;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;

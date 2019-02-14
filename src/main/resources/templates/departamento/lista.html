@@ -32,14 +32,14 @@
 	                    </tr>
 	                    </thead>
 	                    <tbody>
-	                    <tr th:each="departamento : ${departamentos}">
-	                        <td th:text="${departamento.id}"></td>
-	                        <td th:text="${departamento.nome}"></td>
+	                    <tr th:each="department : ${departments}">
+	                        <td th:text="${department.id}"></td>
+	                        <td th:text="${department.name}"></td>
 	                        <td colspan="2">
-	                            <a class="btn btn-info btn-sm" href="/departamentos/editar/${departamento.id}" role="button">
+	                            <a class="btn btn-info btn-sm" href="/departamentos/editar/${department.id}" role="button">
 	                                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
 	                            </a>
-	                            <button id="btn_departamentos/excluir/${departamento.id}" type="button" class="btn btn-danger btn-sm">
+	                            <button id="btn_departamentos/excluir/${department.id}" type="button" class="btn btn-danger btn-sm">
 	                                <span class="oi oi-circle-x" title="Exclusão desabilitada" aria-hidden="true"></span>
 	                            </button>
 	                        </td>

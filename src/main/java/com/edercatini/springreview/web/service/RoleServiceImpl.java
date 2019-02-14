@@ -1,4 +1,4 @@
-package com.edercatini.springrevisao.web.service;
+package com.edercatini.springreview.web.service;
 
 import java.util.List;
 
@@ -6,27 +6,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.edercatini.springrevisao.web.dao.CargoDao;
-import com.edercatini.springrevisao.web.domain.Cargo;
+import com.edercatini.springreview.web.dao.RoleDao;
+import com.edercatini.springreview.web.domain.Role;
 
 @Service
 @Transactional(readOnly = false)
-public class CargoServiceImpl implements CargoService {
+public class RoleServiceImpl implements RoleService {
 
-	private CargoDao dao;
+	private RoleDao dao;
 
 	@Autowired
-	public CargoServiceImpl(CargoDao dao) {
+	public RoleServiceImpl(RoleDao dao) {
 		this.dao = dao;
 	}
 
 	@Override
-	public void save(Cargo cargo) {
+	public void save(Role cargo) {
 		this.dao.save(cargo);
 	}
 
 	@Override
-	public void edit(Cargo cargo) {
+	public void edit(Role cargo) {
 		this.dao.update(cargo);
 	}
 
@@ -37,13 +37,13 @@ public class CargoServiceImpl implements CargoService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public Cargo findById(Long id) {
+	public Role findById(Long id) {
 		return this.dao.findById(id);
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Cargo> findAll() {
+	public List<Role> findAll() {
 		return this.dao.findAll();
 	}
 }

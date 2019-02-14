@@ -1,6 +1,6 @@
-package com.edercatini.springrevisao.web.domain;
+package com.edercatini.springreview.web.domain;
 
-public enum UF {
+public enum FederativeUnit {
 
 	AC("AC", "Acre"), AL("AL", "Alagoas"), AM("AM", "Amazonas"), BA("BA", "Bahia"), CE("CE", "Ceará"),
 	DF("DF", "Distrito Federal"), ES("ES", "Espírito Santo"), GO("GO", "Goiás"), MA("MA", "Maranhão"),
@@ -9,28 +9,28 @@ public enum UF {
 	RN("RN", "Rio Grande do Norte"), RS("RS", "Rio Grande do Sul"), RO("RO", "Rondônia"), RR("RR", "Roraima"),
 	SC("SC", "Santa Catarina"), SP("SP", "São Paulo"), SE("SE", "Sergipe"), TO("TO", "Tocantins");
 
-	private String sigla;
+	private String code;
 
-	private String descricao;
+	private String description;
 
-	UF(String sigla, String descricao) {
-		this.setSigla(sigla);
-		this.setDescricao(descricao);
+	FederativeUnit(String code, String description) {
+		this.setCode(code);
+		this.setDescription(description);
 	}
 
-	public String getSigla() {
-		return this.sigla;
+	public String getCode() {
+		return this.code;
 	}
 
-	public void setSigla(String sigla) {
-		this.sigla = sigla;
+	public void setCode(String code) {
+		this.code = code;
 	}
 
-	public String getDescricao() {
-		return this.descricao;
+	public String getDescription() {
+		return this.description;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 }
