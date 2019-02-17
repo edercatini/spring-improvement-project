@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}">
+<head><meta charset="UTF-8"/></head>
+<body>
+    <section class="layout-content" layout:fragment="corpo">
+
+        <nav class="navbar navbar-expand-md bg-light">
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <i class="oi oi-caret-right"></i>
+                        <span>Cadastrar Cargos</span>
+                    </li>
+                </ul>
+            </div>
+            <a class="btn btn-primary btn-md" href="/roles/list" role="button">
+                <span class="oi oi-spreadsheet" title="Cadastro" aria-hidden="true"></span>
+                <span>Listar Cargos</span>
+            </a>
+        </nav>
+
+        <div class="container" id="cadastro">
+        	<div th:replace="fragments/alert"></div>
+            <form th:action="${role.id == null} ? @{/roles/save} : @{/roles/edit}" th:object="${role}" method="POST">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="nome">Nome do Cargo</label>
+                        <input type="text" class="form-control" id="name" placeholder="Nome do Cargo" autofocus="autofocus" name="name" th:value="*{name}" />
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="department">Departamento</label>
+                        <select id="department" th:field="*{department}" class="form-control" name="department">
+                            <option value="">Selecione</option>
+                            <option th:each="dept : ${departments}" th:text="${dept.name}" th:value="${dept.id}" th:selected="${dept.id == selected}"></option>
+                        </select>
+                    </div>
+                </div>
+                <input type="hidden" id="id" name="id" th:value="${role.id}"/>
+                <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+            </form>
+        </div>
+    </section>
+</body>
+</html>		

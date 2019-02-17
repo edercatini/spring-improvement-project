@@ -6,9 +6,9 @@ import com.edercatini.springreview.web.domain.Role;
 
 public interface RoleService {
 
-	void save(Role cargo);
+	void save(Role role);
 
-	void edit(Role cargo);
+	void edit(Role role);
 
 	void delete(Long id);
 

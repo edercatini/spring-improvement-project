@@ -21,13 +21,13 @@ public class RoleServiceImpl implements RoleService {
 	}
 
 	@Override
-	public void save(Role cargo) {
-		this.dao.save(cargo);
+	public void save(Role role) {
+		this.dao.save(role);
 	}
 
 	@Override
-	public void edit(Role cargo) {
-		this.dao.update(cargo);
+	public void edit(Role role) {
+		this.dao.update(role);
 	}
 
 	@Override
