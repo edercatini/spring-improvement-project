@@ -6,9 +6,9 @@ import com.edercatini.springreview.web.domain.Department;
 
 public interface DepartmentService {
 
-	void save(Department departamento);
+	void save(Department department);
 
-	void edit(Department departamento);
+	void edit(Department department);
 
 	void delete(Long id);
 

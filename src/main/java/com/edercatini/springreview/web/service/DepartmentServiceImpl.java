@@ -21,13 +21,13 @@ public class DepartmentServiceImpl implements DepartmentService {
 	}
 
 	@Override
-	public void save(Department departamento) {
-		this.dao.save(departamento);
+	public void save(Department department) {
+		this.dao.save(department);
 	}
 
 	@Override
-	public void edit(Department departamento) {
-		this.dao.update(departamento);
+	public void edit(Department department) {
+		this.dao.update(department);
 	}
 
 	@Override
