@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.edercatini.springreview.web.domain.Department;
 import com.edercatini.springreview.web.service.DepartmentService;
@@ -28,7 +29,7 @@ public class DepartmentController {
 	}
 
 	@GetMapping("/edit/{id}")
-	public String edit(@PathVariable("id") Long id, ModelMap model) {
+	public String preEdit(@PathVariable("id") Long id, ModelMap model) {
 		model.addAttribute("department", service.findById(id));
 		return "/department/register";
 	}
@@ -41,22 +42,27 @@ public class DepartmentController {
 
 	@GetMapping("/remove/{id}")
 	public String remove(@PathVariable("id") Long id, ModelMap model) {
-		if (!service.hasAssociatedRoles(id)) {
+		if (service.hasAssociatedRoles(id)) {
+			model.addAttribute("fail", "Departamento não removido pois há cargo(s) associado(s).");
+		} else {
 			this.service.delete(id);
+			model.addAttribute("success", "Departamento excluído com sucesso.");
 		}
 
 		return this.list(model);
 	}
 
 	@PostMapping("/save")
-	public String save(Department department) {
+	public String save(Department department, RedirectAttributes redirectAttributes) {
 		this.service.save(department);
+		redirectAttributes.addFlashAttribute("success", "Departamento inserido com sucesso.");
 		return "redirect:/departments/register";
 	}
 
 	@PostMapping("/edit")
-	public String edit(Department department) {
+	public String edit(Department department, RedirectAttributes redirectAttributes) {
 		this.service.edit(department);
+		redirectAttributes.addFlashAttribute("success", "Departamento alterado com sucesso.");
 		return "redirect:/departments/register";
 	}
 }
