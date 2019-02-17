@@ -39,6 +39,15 @@ public class DepartmentController {
 		return "/department/list";
 	}
 
+	@GetMapping("/remove/{id}")
+	public String remove(@PathVariable("id") Long id, ModelMap model) {
+		if (!service.hasAssociatedRoles(id)) {
+			this.service.delete(id);
+		}
+
+		return this.list(model);
+	}
+
 	@PostMapping("/save")
 	public String save(Department department) {
 		this.service.save(department);
