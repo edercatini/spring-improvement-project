@@ -46,4 +46,13 @@ public class RoleServiceImpl implements RoleService {
 	public List<Role> findAll() {
 		return this.dao.findAll();
 	}
+
+	@Override
+	public Boolean hasAssociatedEmployees(Long id) {
+		if (this.findById(id).getEmployees().isEmpty()) {
+			return false;
+		}
+
+		return true;
+	}
 }

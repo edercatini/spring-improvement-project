@@ -49,13 +49,25 @@ public class RoleController {
 		return "/roles/register";
 	}
 
+	@GetMapping("remove/{id}")
+	public String remove(@PathVariable("id") Long id, ModelMap model) {
+		if (this.roleService.hasAssociatedEmployees(id)) {
+			model.addAttribute("fail", "Cargo não removido pois há funcionário(s) associado(s).");
+		} else {
+			this.roleService.delete(id);
+			model.addAttribute("success", "Cargo removido com sucesso.");
+		}
+
+		return this.list(model);
+	}
+
 	@PostMapping("/save")
 	public String save(Role role, RedirectAttributes redirectAttributes) {
 		this.roleService.save(role);
 		redirectAttributes.addFlashAttribute("success", "Cargo inserido com sucesso.");
 		return "redirect:/roles/register";
 	}
-	
+
 	@PostMapping("/edit")
 	public String edit(Role role, RedirectAttributes redirectAttributes) {
 		this.roleService.edit(role);
