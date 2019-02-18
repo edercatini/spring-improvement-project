@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.edercatini.springreview.web.dao.DepartmentDao;
 import com.edercatini.springreview.web.domain.Department;
+import com.edercatini.springreview.web.exceptions.EntityNotFoundException;
 
 @Service
 @Transactional(readOnly = false)
@@ -38,7 +39,13 @@ public class DepartmentServiceImpl implements DepartmentService {
 	@Override
 	@Transactional(readOnly = true)
 	public Department findById(Long id) {
-		return this.dao.findById(id);
+		Department department = this.dao.findById(id);
+		
+		if (department == null) {
+			throw new EntityNotFoundException("Departamento não encontrado");
+		}
+		
+		return department;
 	}
 
 	@Override

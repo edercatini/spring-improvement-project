@@ -9,6 +9,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,6 +24,7 @@ public class Role extends AbstractEntity<Long> {
 	@Column(nullable = false, unique = true, length = 60)
 	private String name;
 
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "id_department_fk")
 	private Department department;
