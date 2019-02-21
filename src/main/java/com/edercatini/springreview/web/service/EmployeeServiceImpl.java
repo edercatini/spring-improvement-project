@@ -21,13 +21,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public void save(Employee funcionario) {
-		this.dao.save(funcionario);
+	public void save(Employee employee) {
+		this.dao.save(employee);
 	}
 
 	@Override
-	public void edit(Employee funcionario) {
-		this.dao.update(funcionario);
+	public void edit(Employee employee) {
+		this.dao.update(employee);
 	}
 
 	@Override

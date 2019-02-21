@@ -6,9 +6,9 @@ import com.edercatini.springreview.web.domain.Employee;
 
 public interface EmployeeService {
 
-	void save(Employee funcionario);
+	void save(Employee employee);
 
-	void edit(Employee funcionario);
+	void edit(Employee employee);
 
 	void delete(Long id);
 

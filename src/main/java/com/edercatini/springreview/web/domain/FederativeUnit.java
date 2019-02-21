@@ -13,7 +13,7 @@ public enum FederativeUnit {
 
 	private String description;
 
-	FederativeUnit(String code, String description) {
+	private FederativeUnit(String code, String description) {
 		this.setCode(code);
 		this.setDescription(description);
 	}
