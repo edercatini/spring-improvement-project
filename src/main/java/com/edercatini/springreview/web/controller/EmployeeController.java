@@ -1,8 +1,11 @@
 package com.edercatini.springreview.web.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.edercatini.springreview.web.domain.Employee;
@@ -55,6 +59,27 @@ public class EmployeeController {
 		this.employeeService.delete(id);
 		model.addAttribute("success", "Funcionário removido com sucesso.");
 		return this.list(model);
+	}
+	
+	@GetMapping("/search/name")
+	public String findByName(@RequestParam("name") String name, ModelMap model) {
+		List<Employee> employees = this.employeeService.findByName(name);
+		model.addAttribute("employees", employees);
+		return "/employee/list";
+	}
+	
+	@GetMapping("/search/role")
+	public String findByRole(@RequestParam("role") Role role, ModelMap model) {
+		List<Employee> employees = this.employeeService.findByRole(role);
+		model.addAttribute("employees", employees);
+		return "/employee/list";
+	}
+	
+	@GetMapping("/search/date")
+	public String findByDate(@RequestParam("startDate") @DateTimeFormat(iso = ISO.DATE) LocalDate startDate, @RequestParam("endDate") @DateTimeFormat(iso = ISO.DATE) LocalDate endDate, ModelMap model) {
+		List<Employee> employees = this.employeeService.findByDate(startDate, endDate);
+		model.addAttribute("employees", employees);
+		return "/employee/list";
 	}
 
 	@PostMapping("/save")
