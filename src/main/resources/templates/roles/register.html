@@ -22,6 +22,7 @@
         <div class="container" id="cadastro">
         	<div th:replace="fragments/alert"></div>
             <form th:action="${role.id == null} ? @{/roles/save} : @{/roles/edit}" th:object="${role}" method="POST">
+            	<div th:replace="fragments/validation :: validation"></div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="nome">Nome do Cargo</label>
@@ -31,7 +32,7 @@
                         <label for="department">Departamento</label>
                         <select id="department" th:field="*{department}" class="form-control" name="department">
                             <option value="">Selecione</option>
-                            <option th:each="dept : ${departments}" th:text="${dept.name}" th:value="${dept.id}" th:selected="${dept.id == selected}"></option>
+                            <option th:each="dept : ${departments}" th:text="${dept.name}" th:value="${dept.id}"></option>
                         </select>
                     </div>
                 </div>

@@ -1,8 +1,11 @@
 package com.edercatini.springreview.web.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -53,7 +56,11 @@ public class DepartmentController {
 	}
 
 	@PostMapping("/save")
-	public String save(Department department, RedirectAttributes redirectAttributes) {
+	public String save(@Valid Department department, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+		if (bindingResult.hasErrors()) {
+			return "/department/register";
+		}
+
 		this.service.save(department);
 		redirectAttributes.addFlashAttribute("success", "Departamento inserido com sucesso.");
 		return "redirect:/departments/register";
