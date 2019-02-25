@@ -77,7 +77,11 @@ public class RoleController {
 	}
 
 	@PostMapping("/edit")
-	public String edit(Role role, RedirectAttributes redirectAttributes) {
+	public String edit(@Valid Role role, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+		if (bindingResult.hasErrors()) {
+			return "/roles/register";
+		}
+		
 		this.roleService.edit(role);
 		redirectAttributes.addFlashAttribute("success", "Cargo alterado com sucesso.");
 		return "redirect:/roles/register";

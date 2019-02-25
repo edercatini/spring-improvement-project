@@ -67,7 +67,11 @@ public class DepartmentController {
 	}
 
 	@PostMapping("/edit")
-	public String edit(Department department, RedirectAttributes redirectAttributes) {
+	public String edit(@Valid Department department, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+		if (bindingResult.hasErrors()) {
+			return "/department/register";
+		}
+
 		this.service.edit(department);
 		redirectAttributes.addFlashAttribute("success", "Departamento alterado com sucesso.");
 		return "redirect:/departments/register";

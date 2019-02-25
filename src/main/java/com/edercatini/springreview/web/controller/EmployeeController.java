@@ -3,11 +3,14 @@ package com.edercatini.springreview.web.controller;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -83,14 +86,22 @@ public class EmployeeController {
 	}
 
 	@PostMapping("/save")
-	public String save(Employee employee, RedirectAttributes redirectAttributes) {
+	public String save(@Valid Employee employee, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+		if (bindingResult.hasErrors()) {
+			return "/employee/register";
+		}
+
 		this.employeeService.save(employee);
 		redirectAttributes.addFlashAttribute("success", "Funcionário inserido com sucesso.");
 		return "redirect:/employees/register";
 	}
 	
 	@PostMapping("/edit")
-	public String edit(Employee employee, RedirectAttributes redirectAttributes) {
+	public String edit(@Valid Employee employee, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+		if (bindingResult.hasErrors()) {
+			return "/employee/register";
+		}
+
 		this.employeeService.edit(employee);
 		redirectAttributes.addFlashAttribute("success", "Funcionário alterado com sucesso.");
 		return "redirect:/employees/register";
